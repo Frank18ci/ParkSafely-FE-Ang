@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="my-3 p-2 rounded border-1 border row">
+        <form class="col-6" [formGroup]="ingresoGroup" >
+            <div class="form-group my-2">
+                <label for="">Ingrese Placa del Vehiculo</label>
+                <input class="form-control" type="text" formControlName="numeroPlaca">
+            </div>
+            <div class="form-group my-2">
+                <label for="">Seleccione Categoria de Vehiculo</label>
+                <select name="" id="" class="form-select">
+                    @for (tv of tipoVehiculos; track tv.id) {
+                        <option [value]="tv.id">{{tv.tipo}}</option>
+                    }
+                </select>
+            </div>
+            <div class="text-end my-2">
+                <button class="btn btn-warning" [disabled]="!ingresoGroup.valid">Ingresar</button>
+            </div>
+        </form>
+        <div class="col-6 fs-2 text-center">
+            <div>
+                <p>Hora: {{hora}}</p>
+            </div>
+            <div>
+                <p>Fecha: {{ fecha | date:'fullDate':'UTC':'es' }}</p>
+            </div>
+        </div>
+    </div>
+</div>

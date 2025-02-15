@@ -1,0 +1,75 @@
+<div class="container-md my-3">
+    <div class="text-end my-2">
+        <button class="btn btn-primary" data-bs-target="#modelTarifa" data-bs-toggle="modal" (click)="openModal(null)">Nueva Tarifa</button>
+    </div>
+    <div>
+        <table class="table"> 
+            <thead class="table-dark">
+                <tr>
+                    <th>Clase del Vehiculo</th>
+                    <th>Precio por hora</th>
+                    <th>Precio por dia</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (tarifa of tarifas; track tarifa.id) {
+                    <tr>
+                        <td>{{tarifa.tipoVehiculo}}</td>
+                        <td>{{tarifa.tarifaPorHora}}</td>
+                        <td>{{tarifa.tarifaPorDia}}</td>
+                        <td class="">
+                            <button class="btn btn-warning me-2" data-bs-target="#modelTarifa" data-bs-toggle="modal" (click)="openModal(tarifa)">Editar</button>
+                            <button class="btn btn-danger" (click)="eliminarTarifa(tarifa.id)">Eliminar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+  
+<div class="modal fade" id="modelTarifa" tabindex="-1" aria-labelledby="modelTarifa" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Tarifa</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" [formGroup]="formTarifa">
+            <div class="row">
+                <div >
+                    <div class="form-group my-2">
+                        <label for="">Seleccione Categoria de Vehiculo</label>
+                        <select name="" id="" class="form-select" formControlName="categoria">
+                            @for (tv of tipoVehiculos; track tv.id) {
+                                <option [value]="tv.id">{{tv.tipo}}</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group my-2">
+                        <label>Tarifa por hora</label>
+                        <input type="number" name="" id="" class="form-control" formControlName="tarifaPorHora">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group my-2">
+                        <label>Tarifa por día</label>
+                        <input type="number" name="" id="" class="form-control" formControlName="tarifaPorDia">
+                    </div>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="saveUpdateTarifa()">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>

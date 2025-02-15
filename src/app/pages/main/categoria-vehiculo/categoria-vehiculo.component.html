@@ -1,0 +1,55 @@
+<div class="container-md my-3">
+    <div class="text-end my-2">
+        <button class="btn btn-success me-2" data-bs-target="#modelCategoriaVehiculo" data-bs-toggle="modal" (click)="openModal(0)">Nuevo Tipo Vehiculo</button>
+    </div>
+    <div>
+        <table class="table"> 
+            <thead class="table-dark">
+                <tr>
+                    <th>Tipo del Vehiculo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (tv of tipoVehiculos; track tv.id) {
+                    <tr>
+                        <td>{{tv.tipo}}</td>
+                        <td class="">
+                            <button class="btn btn-warning me-2" data-bs-toggle="modal" data-bs-target="#modelCategoriaVehiculo" (click)="openModal(tv)">Editar</button>
+                            <button class="btn btn-danger" (click)="eliminarTipoVehiculo(tv.id)">Eliminar</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+  
+
+  <div class="modal fade" id="modelCategoriaVehiculo" tabindex="-1" aria-labelledby="modelCategoriaVehiculo" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modelCategoriaVehiculo">Categoria Vehiculo</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" [formGroup]="formVehiculo" >
+          
+            <div class="row">
+                <div>
+                    <div class="form-group my-2">
+                        <label>Categoria</label>
+                        <input type="text" name="" id="" class="form-control" formControlName="tipoVehiculo">
+                    </div>
+                </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" (click)="saveUpdateTipoVehiculo()" class="btn btn-primary" >Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
